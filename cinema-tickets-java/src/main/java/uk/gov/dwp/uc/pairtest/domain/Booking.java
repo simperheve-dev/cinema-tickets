@@ -2,12 +2,13 @@ package uk.gov.dwp.uc.pairtest.domain;
 
 public class Booking {
 	
+	private long accountId;
 	private int adultTickets;
 	private int childTickets;
 	private int infantTickets;
-	private float total;
+	private int total;
 	
-	public Booking() {
+	public Booking(long accountId) {
 		// TODO Auto-generated constructor stub
 		adultTickets = 0;
 		childTickets = 0;
@@ -42,7 +43,21 @@ public class Booking {
 		infantTickets += amount;
 	}
 	
-	public float getTotal() {
+	public void addToTotal(int amount)
+	{
+		total += amount;
+	}
+	
+	public int getSeatableTickets()
+	{
+		return getAdultTickets() + getChildTickets();
+	}
+	
+	public int getTotal() {
 		return total;
+	}
+	
+	public long getAccountId() {
+		return accountId;
 	}
 }
