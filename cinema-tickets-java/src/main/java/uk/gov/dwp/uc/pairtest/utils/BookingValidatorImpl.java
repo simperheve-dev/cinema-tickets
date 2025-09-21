@@ -5,10 +5,14 @@ public class BookingValidatorImpl extends BookingValidator {
 	@Override
 	public boolean validate() {
 		
-		return validAccountId()
-				&& atLeastOneAdult()
-				&& infantsLessOrEqualToAdults() 
-				&& equalOrBelowMaxTickets();
+		if(getBooking() != null) {
+			return validAccountId()
+					&& atLeastOneAdult()
+					&& infantsLessOrEqualToAdults() 
+					&& equalOrBelowMaxTickets();
+		}
+		
+		return false;
 	}
 	
 	// Maximum of 25 tickets
