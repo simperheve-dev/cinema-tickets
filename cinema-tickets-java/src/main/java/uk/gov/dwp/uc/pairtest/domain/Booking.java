@@ -9,11 +9,11 @@ public class Booking {
 	private int total;
 	
 	public Booking(long accountId) {
-		// TODO Auto-generated constructor stub
 		adultTickets = 0;
 		childTickets = 0;
 		infantTickets = 0;
 		total = 0;
+		this.accountId = accountId;
 	}
 	
 	public int getAdultTickets() {

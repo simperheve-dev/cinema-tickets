@@ -59,4 +59,42 @@ public class BookingValidatorTest {
 		
 		assertFalse(bookingValidator.validate());
 	}
+	
+	@Test
+	public void testInvalidAccountId() {
+		Booking booking = new Booking(0);
+		booking.addAdultTickets(1);
+		
+		booking.addToTotal(1);
+		
+		bookingValidator.setBooking(booking);
+		
+		assertFalse(bookingValidator.validate());
+	}
+	
+	@Test
+	public void testInvalidTicketNumber()
+	{
+		Booking booking = new Booking(1);
+		booking.addAdultTickets(100);
+		booking.addInfantTickets(1);
+		booking.addToTotal(1);
+		
+		bookingValidator.setBooking(booking);
+		
+		assertFalse(bookingValidator.validate());
+	}
+	
+	@Test
+	public void testInvalidNoOfInfantsToAdults()
+	{
+		Booking booking = new Booking(1);
+		booking.addAdultTickets(1);
+		booking.addInfantTickets(7);
+		booking.addToTotal(1);
+		
+		bookingValidator.setBooking(booking);
+		
+		assertFalse(bookingValidator.validate());
+	}
 }
