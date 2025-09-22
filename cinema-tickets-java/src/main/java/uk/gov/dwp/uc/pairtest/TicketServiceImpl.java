@@ -33,13 +33,16 @@ public class TicketServiceImpl implements TicketService {
 	public void purchaseTickets(Long accountId, TicketTypeRequest... ticketTypeRequests)
 			throws InvalidPurchaseException {
 
+		//Create a Booking object and associate for later validation
 		Booking booking = new Booking(accountId);
 		validator.setBooking(booking);
 		
 		for (TicketTypeRequest ticketTypeRequest : ticketTypeRequests) {
 
+			//Calculate the ticket price of this request
 			int ticketPrice = ticketPriceCalculator.calculate(ticketTypeRequest);
 
+			//Add number of tickets to the booking
 			switch (ticketTypeRequest.getTicketType()) {
 				case ADULT: {
 					booking.addAdultTickets(ticketTypeRequest.getNoOfTickets());
@@ -53,9 +56,11 @@ public class TicketServiceImpl implements TicketService {
 				}
 			}
 			
+			//Add the calculated ticket price
 			booking.addToTotal(ticketPrice);
 		}
 		
+		//Complete the payment and seat reservation if the booking validates correctly
 		if(validator.validate())
 		{
 			ticketPaymentService.makePayment(booking.getAccountId(), booking.getTotal());

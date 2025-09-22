@@ -6,10 +6,7 @@ public abstract class BookingValidator {
 
 	private Booking booking;
 
-	public BookingValidator() {
-		// TODO Auto-generated constructor stub
-	}
-
+	//Validate the booking based on set criteria (depending on implementation)
 	public abstract boolean validate();
 
 	public void setBooking(Booking booking) {
