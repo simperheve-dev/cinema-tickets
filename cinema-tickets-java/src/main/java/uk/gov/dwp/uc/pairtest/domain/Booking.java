@@ -48,6 +48,7 @@ public class Booking {
 		total += amount;
 	}
 	
+	//Fetch the total number of tickets requiring seats
 	public int getSeatableTickets()
 	{
 		return getAdultTickets() + getChildTickets();
